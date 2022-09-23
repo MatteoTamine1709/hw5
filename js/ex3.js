@@ -31,6 +31,19 @@ const studentList = [
     },
 ];
 
-const cLastNameResults = studentList.filter(student => student.lastName[0] === "C");
+const cLastNameResults = studentList
+    .filter(student => student.lastName[0] === "C")
+    .map(student => {
+        const avgScore = student.scores.reduce((total, score) => total + score) / student.scores.length;
+        const minScore = Math.min(...student.scores);
+        const maxScore = Math.max(...student.scores);
+        return {
+            firstName: student.firstName,
+            lastName: student.lastName,
+            avgScore,
+            minScore,
+            maxScore,
+        };
+    });
 
 console.log(cLastNameResults);
